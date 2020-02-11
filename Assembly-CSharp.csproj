@@ -64,6 +64,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Rifle.cs" />
+    <Compile Include="Assets\Scripts\Target.cs" />
     <None Include="Assets\Prefabs\western-props-pack\README.txt" />
     <None Include="Assets\Prefabs\sci-fi-weapons\README.txt" />
     <Reference Include="Unity.Timeline.Editor">
