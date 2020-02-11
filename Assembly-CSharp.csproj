@@ -64,6 +64,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <None Include="Assets\Prefabs\western-props-pack\README.txt" />
+    <None Include="Assets\Prefabs\sci-fi-weapons\README.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Gursaanj/Documents/GitHub/FPS Controller/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
