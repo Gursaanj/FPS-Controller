@@ -16,11 +16,19 @@ public class TargetManager : MonoBehaviour
     private float zDimensionsPlane;
     private List<GameObject> targets = new List<GameObject>();
 
+    public float HeightAbovePlane
+    {
+        get
+        {
+            return heightAbovePlane;
+        }
+    }
+
     private void Awake()
     {
         if (instance == null)
         {
-            instance = null;
+            instance = this;
         }
         else if (instance != this)
         {
@@ -38,15 +46,39 @@ public class TargetManager : MonoBehaviour
 
         Transform targetTransform = target.transform;
 
-        Vector3 targetPosition;
+        GameObject instantiatedObject;
+        Vector3 position;
         for (int i = 0; i < pooledAmountOfTargets; i++)
         {
-            float xPosition = Random.Range(-xDimensionsPlane, xDimensionsPlane);
-            float zPosition = Random.Range(-zDimensionsPlane, zDimensionsPlane);
-
-            targetPosition = new Vector3(xPosition, heightAbovePlane, zPosition);
-            targetTransform.position = targetPosition;
-            targets.Add(Instantiate(target, targetTransform));
+            position = NewSpawnPosition();
+            targets.Add(Instantiate(target, position, Quaternion.identity, transform));
         }
+    }
+
+    private Vector3 NewSpawnPosition()
+    {
+        float xPosition = Random.Range(-xDimensionsPlane, xDimensionsPlane);
+        float zPosition = Random.Range(-zDimensionsPlane, zDimensionsPlane);
+        Vector3 targetPosition = new Vector3(xPosition, heightAbovePlane, zPosition);
+        return targetPosition;
+    }
+
+    public void InitializeRespawn(float respawnTime)
+    {
+        for (int i = 0, count = targets.Count; i < count; i++)
+        {
+            GameObject target = targets[i];
+            if (!target.activeInHierarchy)
+            {
+                StartCoroutine(Respawn(target, respawnTime));
+            }
+        }
+    }
+
+    private IEnumerator Respawn(GameObject target, float respawnTime)
+    {
+        yield return new WaitForSeconds(respawnTime);
+        target.transform.position = NewSpawnPosition();
+        target.SetActive(true);
     }
 }

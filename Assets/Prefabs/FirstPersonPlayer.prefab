@@ -343,11 +343,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1958246363031467023, guid: 334751cd33e49d84bae973ce25402108,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 5.2e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958246363031467023, guid: 334751cd33e49d84bae973ce25402108,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958246363031467023, guid: 334751cd33e49d84bae973ce25402108,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 5.2e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958246363031467023, guid: 334751cd33e49d84bae973ce25402108,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1.369082e-28
+      objectReference: {fileID: 0}
     - target: {fileID: 2705529403688436991, guid: 334751cd33e49d84bae973ce25402108,
         type: 3}
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 6244827740671548056, guid: 334751cd33e49d84bae973ce25402108,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8296172668434076851, guid: 334751cd33e49d84bae973ce25402108,
         type: 3}
       propertyPath: fpsCamera

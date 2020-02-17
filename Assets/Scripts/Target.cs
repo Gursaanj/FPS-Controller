@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using UnityEngine;
 
 public class Target : MonoBehaviour
@@ -10,6 +11,8 @@ public class Target : MonoBehaviour
     [SerializeField] private float timeTillCrackCopyRemoval = 3f;
     private float health;
 
+    public Action onTargetDestroyed;
+
     private void Start()
     {
         health = maxHealth;
@@ -18,6 +21,11 @@ public class Target : MonoBehaviour
         {
             Debug.LogError("Target will respawn before removal");
         }
+    }
+
+    public void Respawn()
+    {
+        health = maxHealth;
     }
 
     public void TakeDamage(float amount)
@@ -32,7 +40,10 @@ public class Target : MonoBehaviour
     private void TargetDestroyed()
     {
         GameObject crackedCopy = Instantiate(crackedVersion, transform.position, transform.rotation);
-        crackedCopy.GetComponent<CrackedCopyRemoval>().IntiateFadeOut(timeTillCrackCopyRemoval);
-        Destroy(gameObject);
-    }
+        CrackedCopyRemoval crack = crackedCopy.GetComponent<CrackedCopyRemoval>();
+        crack.IntiateFadeOut(timeTillCrackCopyRemoval);
+        gameObject.SetActive(false);
+        //onTargetDestroyed?.Invoke();
+        TargetManager.instance.InitializeRespawn(timeTillRespawn);
+    }   
 }

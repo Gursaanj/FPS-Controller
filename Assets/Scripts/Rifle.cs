@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Rifle : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class Rifle : MonoBehaviour
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private float muzzleLightIntensity = 5f;
     [SerializeField] private Light muzzleFlashLight;
-    [SerializeField] private GameObject impactCollision;
     [SerializeField] private float pushBackForce = 30f;
     [SerializeField] private float fireRate = 15f;
     private ParticleSystem impactEffect;
@@ -17,7 +17,6 @@ public class Rifle : MonoBehaviour
 
     private void Start()
     {
-        impactEffect = impactCollision.GetComponent<ParticleSystem>();
         muzzleFlashLight.intensity = 0;
     }
 
@@ -40,8 +39,6 @@ public class Rifle : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
         {
-            Debug.Log(hit.transform.name);
-
             Target target = hit.transform.GetComponent<Target>();
 
             if (target != null)
@@ -54,8 +51,22 @@ public class Rifle : MonoBehaviour
                 hit.rigidbody.AddForce(-hit.normal * pushBackForce);
             }
 
-            GameObject impact = Instantiate(impactCollision, hit.point, Quaternion.LookRotation(hit.normal));
-            Destroy(impact, impactEffect.main.duration);
+            GameObject impactCollision = ImpactPooler.Instance.GetPooledImpactCollision();
+
+            if (impactCollision != null)
+            {
+                impactEffect = impactCollision.GetComponent<ParticleSystem>();
+                impactCollision.transform.position = hit.point;
+                impactCollision.transform.rotation = Quaternion.LookRotation(hit.normal);
+                impactCollision.SetActive(true);
+                StartCoroutine(PoolImpactCollision(impactCollision));
+            }
         }
+    }
+
+    private IEnumerator PoolImpactCollision(GameObject impactCollision)
+    {
+        yield return new WaitForSeconds(impactEffect.main.duration);
+        ImpactPooler.Instance.AddImpactCollisionToPool(impactCollision);
     }
 }
