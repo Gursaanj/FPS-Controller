@@ -133,6 +133,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3276742503239726431}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &691978479 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6216951094032114818, guid: 176998c1294500c48a763ae7230240a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 8734025925443099391}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,6 +833,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1885940448}
     m_Modifications:
+    - target: {fileID: 55793317, guid: b83c9f80c01a6fb47ad9d1d4ddff0df0, type: 3}
+      propertyPath: playerSpawnPoint
+      value: 
+      objectReference: {fileID: 691978479}
     - target: {fileID: 1984878431085522758, guid: b83c9f80c01a6fb47ad9d1d4ddff0df0,
         type: 3}
       propertyPath: m_Name

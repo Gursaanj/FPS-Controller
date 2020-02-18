@@ -21,10 +21,20 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
     private const float groundedVelocity = -2f;
+    private Vector3 spawnPoint;
+
+    public Vector3 SpawnPoint
+    {
+        get
+        {
+            return spawnPoint;
+        }
+    }
 
     // Start is called before the first frame update
     private void Start()
     {
+        spawnPoint = transform.position;
         controller = GetComponentInChildren<CharacterController>();
     }
 

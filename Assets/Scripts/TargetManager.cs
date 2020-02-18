@@ -60,8 +60,9 @@ public class TargetManager : MonoBehaviour
         return targetPosition;
     }
 
-    public void InitializeRespawn(GameObject target, float respawnTime)
+    public void InitializeRespawn(GameObject target, float respawnTime = 5f)
     {
+        target.SetActive(false);
         StartCoroutine(Respawn(target, respawnTime));
     }
 

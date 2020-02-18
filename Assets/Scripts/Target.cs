@@ -38,7 +38,6 @@ public class Target : MonoBehaviour
     {
         GameObject crackedCopy = Instantiate(crackedVersion, transform.position, transform.rotation);
         crackedCopy.GetComponent<CrackedCopyRemoval>().IntiateFadeOut(timeTillCrackCopyRemoval);
-        gameObject.SetActive(false);
         TargetManager.instance.InitializeRespawn(gameObject, timeTillRespawn);
     }
 }

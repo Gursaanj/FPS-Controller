@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CrackedCopyRemoval.cs" />
+    <Compile Include="Assets\Scripts\FallDeathDetection.cs" />
     <Compile Include="Assets\Scripts\ImpactPooler.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\Pistol.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\Scripts\PoolerManager.cs" />
     <Compile Include="Assets\Scripts\Target.cs" />
     <Compile Include="Assets\Scripts\TargetManager.cs" />
+    <Compile Include="Assets\Scripts\WeaponSwitching.cs" />
     <None Include="Assets\Prefabs\western-props-pack\README.txt" />
     <None Include="Assets\Prefabs\sci-fi-weapons\README.txt" />
     <Reference Include="Unity.Timeline.Editor">
