@@ -44,9 +44,6 @@ public class TargetManager : MonoBehaviour
         xDimensionsPlane = planeBounds.size.x / 2.2f;
         zDimensionsPlane = planeBounds.size.z / 2.2f;
 
-        Transform targetTransform = target.transform;
-
-        GameObject instantiatedObject;
         Vector3 position;
         for (int i = 0; i < pooledAmountOfTargets; i++)
         {
@@ -63,16 +60,9 @@ public class TargetManager : MonoBehaviour
         return targetPosition;
     }
 
-    public void InitializeRespawn(float respawnTime)
+    public void InitializeRespawn(GameObject target, float respawnTime)
     {
-        for (int i = 0, count = targets.Count; i < count; i++)
-        {
-            GameObject target = targets[i];
-            if (!target.activeInHierarchy)
-            {
-                StartCoroutine(Respawn(target, respawnTime));
-            }
-        }
+        StartCoroutine(Respawn(target, respawnTime));
     }
 
     private IEnumerator Respawn(GameObject target, float respawnTime)

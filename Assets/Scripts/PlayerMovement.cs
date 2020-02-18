@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movement;
     private Vector3 velocity;
     private bool isGrounded;
-    private float groundedVelocity = -2f;
+    private const float groundedVelocity = -2f;
 
     // Start is called before the first frame update
     private void Start()

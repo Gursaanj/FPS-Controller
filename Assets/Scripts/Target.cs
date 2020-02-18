@@ -11,27 +11,24 @@ public class Target : MonoBehaviour
     [SerializeField] private float timeTillCrackCopyRemoval = 3f;
     private float health;
 
-    public Action onTargetDestroyed;
 
-    private void Start()
+    private void Awake()
     {
-        health = maxHealth;
-
         if (timeTillRespawn <= timeTillCrackCopyRemoval)
         {
             Debug.LogError("Target will respawn before removal");
         }
     }
 
-    public void Respawn()
+    private void OnEnable()
     {
         health = maxHealth;
     }
 
     public void TakeDamage(float amount)
     {
-        maxHealth -= amount;
-        if (maxHealth <= 0f)
+        health -= amount;
+        if (health <= 0f)
         {
             TargetDestroyed();
         }
@@ -40,10 +37,8 @@ public class Target : MonoBehaviour
     private void TargetDestroyed()
     {
         GameObject crackedCopy = Instantiate(crackedVersion, transform.position, transform.rotation);
-        CrackedCopyRemoval crack = crackedCopy.GetComponent<CrackedCopyRemoval>();
-        crack.IntiateFadeOut(timeTillCrackCopyRemoval);
+        crackedCopy.GetComponent<CrackedCopyRemoval>().IntiateFadeOut(timeTillCrackCopyRemoval);
         gameObject.SetActive(false);
-        //onTargetDestroyed?.Invoke();
-        TargetManager.instance.InitializeRespawn(timeTillRespawn);
-    }   
+        TargetManager.instance.InitializeRespawn(gameObject, timeTillRespawn);
+    }
 }
